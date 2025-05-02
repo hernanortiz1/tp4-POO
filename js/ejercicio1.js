@@ -4,7 +4,7 @@ marca, modelo y si está encendido o apagado. Crea los métodos necesarios para
 permitir encender y apagar el auto.
 */
 
-const Auto = {
+const auto = {
   color: "rojo",
   marca: "Toyota",
   modelo: "2010",
@@ -38,9 +38,9 @@ while (true) {
   }
 
   if (entrada === "encender") {
-    Auto.encender();
+    auto.encender();
   } else if (entrada === "apagar") {
-    Auto.apagar();
+    auto.apagar();
   } else {
     alert("ingrese un valor valido (encender o apagar)");
   }
