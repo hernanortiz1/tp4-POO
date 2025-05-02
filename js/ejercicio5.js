@@ -6,6 +6,10 @@ Los métodos que se debe poder utilizar son:
 mostrarGeneracion: este método debe mostrar un mensaje indicando a qué
 generación pertenece la persona creada y cual es el rasgo característico de esta
 generación.
+esMayorDeEdad: indica si es mayor de edad, devuelve un mensaje indicando que la
+persona es mayor de edad.
+mostrarDatos: devuelve toda la información del objeto.
+generaDNI(): genera un número aleatorio de 8 cifras.
 */
 
 class Persona {
@@ -40,7 +44,7 @@ class Persona {
   }
 
   set setEdad(nuevaEdad) {
-    this.#nombre = nuevaEdad;
+    this.#edad = nuevaEdad;
   }
 
   get getDni() {
@@ -83,7 +87,8 @@ class Persona {
     this.#anioNacimiento = nuevoAnioNacimiento;
   }
 
-  mostrarGeneracion(anioNacimiento) {
+  mostrarGeneracion() {
+    const anioNacimiento = this.#anioNacimiento;
     if (anioNacimiento >= 1930 && anioNacimiento <= 1948) {
       document.writeln(`<p>Silent Generation, Austeridad</p>`);
     } else if (anioNacimiento >= 1949 && anioNacimiento <= 1968) {
@@ -97,8 +102,8 @@ class Persona {
     }
   }
 
-  esMayorDeEdad(edad) {
-    if (edad >= 18) {
+  esMayorDeEdad() {
+    if (this.#edad >= 18) {
       document.writeln(`<p>Es mayor de edad</p>`);
     } else {
       document.writeln(`<p>Es menor de edad</p>`);
@@ -107,16 +112,16 @@ class Persona {
 
   mostrarDatos() {
     document.writeln(`<ul>
-      <li>nombre ${this.#nombre} </li>
-        <li>apellido ${this.#edad} </li>
-        <li>dni ${this.#sexo} </li>
-        <li>email ${this.#peso} </li>
-        <li>edad ${this.#altura} </li>
-        <li>edad ${this.#anioNacimiento} </li>
+      <li>Nombre ${this.#nombre} </li>
+        <li>Edad ${this.#edad} </li>
+        <li>Sexo ${this.#sexo} </li>
+        <li>Peso ${this.#peso} </li>
+        <li>Altura ${this.#altura} </li>
+        <li>Año de nacimiento ${this.#anioNacimiento} </li>
       </ul>`);
   }
 
   generaDNI() {
-    return Math.floor(Math.random() * 8) + 1;
+    return Math.floor(10000000 + Math.random() * 90000000);
   }
 }
