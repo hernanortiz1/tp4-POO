@@ -27,7 +27,7 @@ const cuenta = {
       this.saldo -= cantidad;
     } else {
       document.writeln(
-        "<p>Monto invalid, no se puede extraer esa cantidad</p>"
+        "<p>Monto invalido, no se puede extraer esa cantidad</p>"
       );
     }
   },
