@@ -12,16 +12,71 @@ mostrar la descripción del estado de la cuenta.
 */
 
 const cuenta = {
-    titular: "Alex",
-    saldo: 0,
+  titular: "Alex",
+  saldo: 0,
 
-    ingresar: function(cantidad){
-        this.saldo = cantidad;
-    },
-    extraer: function(cantidad){
-        this.saldo = cantidad;
-    },
-    informar: function(){
-        document.writeln(`Saldo de la cuenta ${this.saldo}`)
+  ingresar: function (cantidad) {
+    if (cantidad > 0) {
+      this.saldo += cantidad;
+    } else {
+      document.writeln("<p>Monto invalido</p>");
     }
-}
+  },
+  extraer: function (cantidad) {
+    if (cantidad > 0 && cantidad <= this.saldo) {
+      this.saldo -= cantidad;
+    } else {
+      document.writeln(
+        "<p>Monto invalid, no se puede extraer esa cantidad</p>"
+      );
+    }
+  },
+  informar: function () {
+    document.writeln(`<ul>
+        <li>Titular: ${this.titular}</li>
+        <li>Saldo de la cuenta ${this.saldo}</li>
+        </ul>`);
+  },
+};
+
+let opcion;
+do {
+  opcion = parseInt(
+    prompt(
+      "Seleccione una opción: 1- información de cuenta, 2- ingresar dinero, 3- extraer dinero, 4- salir."
+    )
+  );
+
+  switch (opcion) {
+    case 1:
+      cuenta.informar();
+      break;
+
+    case 2:
+      const deposito = Number(prompt("Ingresa el monto a depositar"));
+      console.log(deposito);
+
+      cuenta.ingresar(deposito);
+
+      document.writeln(`<p>Depositaste $${deposito}</p>`);
+      cuenta.informar();
+      break;
+
+    case 3:
+      const exraccion = Number(prompt("Ingresa el monto a extraer"));
+      console.log(exraccion);
+
+      cuenta.extraer(exraccion);
+
+      document.writeln(`<p>Monto a extraer $${exraccion}</p>`);
+      cuenta.informar();
+      break;
+
+    case 4:
+      document.writeln("Cerrando el sistema...");
+      break;
+
+    default:
+      document.writeln("Ingresaste una opción invalida");
+  }
+} while (opcion !== 4);
