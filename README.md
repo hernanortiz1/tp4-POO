@@ -1,4 +1,4 @@
-# Trabajo Práctico: Programación Orientada a Objetos en JavaScript
+# Trabajo Práctico N°4: Programación Orientada a Objetos en JavaScript
 
 ## Descripción
 
