@@ -90,23 +90,23 @@ class Persona {
   mostrarGeneracion() {
     const anioNacimiento = this.#anioNacimiento;
     if (anioNacimiento >= 1930 && anioNacimiento <= 1948) {
-      document.writeln(`<p>Silent Generation, Austeridad</p>`);
+      document.writeln(`<p>${this.#nombre} pertenece a Silent Generation, Caracteristica: Austeridad</p>`);
     } else if (anioNacimiento >= 1949 && anioNacimiento <= 1968) {
-      document.writeln(`<p>Baby Boom, Ambición</p>`);
+      document.writeln(`<p>${this.#nombre} pertenece a Baby Boom, Caracteristica: Ambición</p>`);
     } else if (anioNacimiento >= 1969 && anioNacimiento <= 1980) {
-      document.writeln(`<p>Generación X, Obsesión por el exito</p>`);
+      document.writeln(`<p>${this.#nombre} pertenece a Generación X, Caracteristica: Obsesión por el exito</p>`);
     } else if (anioNacimiento >= 1981 && anioNacimiento <= 1993) {
-      document.writeln(`<p>Generación Y, Frustración</p>`);
+      document.writeln(`<p>${this.#nombre} pertenece a Generación Y, Caracteristica: Frustración</p>`);
     } else if (anioNacimiento >= 1994 && anioNacimiento <= 2010) {
-      document.writeln(`<p>Generación Z, Irreverencia</p>`);
+      document.writeln(`<p>${this.#nombre} pertenece a Generación Z, Caracteristica: Irreverencia</p>`);
     }
   }
 
   esMayorDeEdad() {
     if (this.#edad >= 18) {
-      document.writeln(`<p>Es mayor de edad</p>`);
+      document.writeln(`<p> ${this.#nombre} Es mayor de edad</p>`);
     } else {
-      document.writeln(`<p>Es menor de edad</p>`);
+      document.writeln(`<p>${this.#nombre} Es menor de edad</p>`);
     }
   }
 
@@ -125,3 +125,43 @@ class Persona {
     return Math.floor(10000000 + Math.random() * 90000000);
   }
 }
+
+const persona1 = new Persona("Hernán", 27, "4118", "H", 70, 170, 1998);
+const persona2 = new Persona("Luis", 78, "1234", "H", 70, 180, 1947);
+const persona3 = new Persona("Franco", 58, "4567", "H", 80, 170, 1967);
+const persona4 = new Persona("Juan", 46, "1234", "H", 70, 180, 1979);
+const persona5 = new Persona("Carlos", 33, "1234", "H", 70, 180, 1992);
+
+persona1.mostrarDatos();
+persona2.mostrarDatos();
+persona3.mostrarDatos();
+persona4.mostrarDatos();
+persona5.mostrarDatos();
+
+persona1.esMayorDeEdad();
+persona2.esMayorDeEdad();
+persona3.esMayorDeEdad();
+persona4.esMayorDeEdad();
+persona5.esMayorDeEdad();
+
+persona1.mostrarGeneracion();
+persona2.mostrarGeneracion();
+persona3.mostrarGeneracion();
+persona4.mostrarGeneracion();
+persona5.mostrarGeneracion();
+
+document.writeln(
+  `<p>Nuevo DNI generado(${persona1.getNombre}): ${persona1.generaDNI()}</p>`
+);
+document.writeln(
+  `<p>Nuevo DNI generado(${persona2.getNombre}): ${persona2.generaDNI()}</p>`
+);
+document.writeln(
+  `<p>Nuevo DNI generado(${persona3.getNombre}): ${persona3.generaDNI()}</p>`
+);
+document.writeln(
+  `<p>Nuevo DNI generado(${persona4.getNombre}): ${persona4.generaDNI()}</p>`
+);
+document.writeln(
+  `<p>Nuevo DNI generado(${persona5.getNombre}): ${persona5.generaDNI()}</p>`
+);
