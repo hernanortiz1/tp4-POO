@@ -40,7 +40,7 @@ class Aeropuerto {
 
   buscarAvion(nombreAvion) {
     const avion = this.#listaAviones.find(
-      (elemento = elemento.getNombreAvion === nombreAvion)
+      (elemento)=>elemento.getNombreAvion === nombreAvion
     );
     if (avion) {
       document.writeln(`<h3>Avión encontrado</h3>`);
@@ -48,24 +48,25 @@ class Aeropuerto {
         <li>Nombre: ${avion.getNombreAvion} </li>
         <li>Destino: ${avion.getDestino}</li>
         <li>Capacidad restante: ${avion.getCapacidad}</li>
-        <li>Pasajeros: ${avion.getListaDePasajeros().join(", ")}</li>
+        <li>Pasajeros: ${avion.getListaDePasajeros.join(", ")}</li>
         </ul>`);
-    }else{
-        document.writeln(`<p>Avión No encontrado</p>`);
+    } else {
+      document.writeln(`<p>Avión No encontrado</p>`);
     }
   }
 }
 
 class Avion {
   #nombreAvion;
-  #capacidad = 100;
+  #capacidad;
   #destino;
   #listaDePasajeros;
-  constructor(nombreAvion, capacidad, destino, listaDePasajeros) {
+
+  constructor(nombreAvion, capacidad, destino) {
     this.#nombreAvion = nombreAvion;
     this.#capacidad = capacidad;
     this.#destino = destino;
-    this.listaDePasajeros = listaDePasajeros;
+    this.#listaDePasajeros = [];
   }
 
   get getNombreAvion() {
@@ -96,19 +97,27 @@ class Avion {
     return this.#listaDePasajeros;
   }
 
-  set setListaDePasajeros(nuevaListaDePasajero) {
-    this.#listaDePasajeros = nuevaListaDePasajero;
-  }
-
   abordar(pasajero) {
-    if (pasajero <= 100) {
-      this.#capacidad += pasajero;
+    if (this.#listaDePasajeros.length < this.#capacidad) {
+      this.#listaDePasajeros.push(pasajero)
+      document.writeln(`<p>${pasajero} ha abordado el avión ${this.#nombreAvion}.</p>`);
     } else {
-      alert("no hay más lugares disponibles");
+      alert(`No hay más lugares disponibles en ${this.getNombreAvion}`);
     }
   }
 }
 
-const aeropuerto1 = new Aeropuerto("Aeropuerto internacional", "avion1");
+const aeropuerto1 = new Aeropuerto("Aeropuerto internacional");
 
-const avion1 = new Avion("Avion1", 50, "Miami");
+const avion1 = new Avion("Avion1", 2, "Miami");
+const avion2 = new Avion("Avion2", 3, "Madrid");
+const avion3 = new Avion("Avion3", 4, "Buenos Aires");
+
+aeropuerto1.agregarAvion(avion1);
+aeropuerto1.agregarAvion(avion2);
+aeropuerto1.agregarAvion(avion3);
+
+avion1.abordar("Hernán");
+avion1.abordar("Luis");
+
+aeropuerto1.buscarAvion("Avion1");
