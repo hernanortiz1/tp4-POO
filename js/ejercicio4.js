@@ -43,10 +43,20 @@ class Producto {
   }
 
   mostrarResultado() {
-    document.writeln(`<ul>:
+    document.writeln(`<ul>
             <li>Codigo: ${this.getCodigo}</li>
              <li>Nombre: ${this.getNombre}</li>
-             <li>Precio: ${this.getPrecio}</li>
+             <li>Precio: $${this.getPrecio}</li>
              </ul>`);
   }
+}
+
+const producto1 = new Producto("1000", "Samsung A24", 300000);
+const producto2 = new Producto("2000", "Notebook HP", 700000);
+const producto3 = new Producto("3000", "Monitor Samsung", 500000);
+
+const productos = [producto1, producto2, producto3];
+
+for (let i = 0; i < productos.length; i++) {
+  productos[i].mostrarResultado();
 }
