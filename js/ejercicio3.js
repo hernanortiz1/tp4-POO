@@ -44,13 +44,13 @@ class Rectangulo {
   }
 }
 
-let rectangulo1;
+
 do {
   const base = parseInt(prompt("Ingrese base"));
   const altura = parseInt(prompt("Ingrese altura"));
 
   if (!isNaN(base) && !isNaN(altura)) {
-    rectangulo1 = new Rectangulo(base, altura);
+    const rectangulo1 = new Rectangulo(base, altura);
     rectangulo1.mostrarResultado();
   } else {
     document.writeln("<p>Ingrese valores validos</p>");
