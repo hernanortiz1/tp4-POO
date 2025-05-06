@@ -57,23 +57,31 @@ class Libro {
 
   mostrarLibro() {
     document.writeln(`<p>El libro ${this.getTitulo} con ISBN ${this.getIsbn}
-        creado por el autor ${this.getAutor} tiene páginas ${this.getNumeroDePaginas}</p>`)
+        creado por el autor ${this.getAutor} tiene páginas ${this.getNumeroDePaginas}</p>`);
   }
 
-  static mayorCantidadDePaginas(libro1, libro2){
-    if(libro1.getNumeroDePaginas > libro2.getNumeroDePaginas){
-        document.writeln(`<p>El libro ${libro1.getTitulo} tiene más páginas (${libro1.getNumeroDePaginas})</p>`)
-    }else if(libro2.getNumeroDePaginas > libro1.getNumeroDePaginas){
-        document.writeln(`<p>El libro ${libro2.getTitulo} tiene más páginas (${libro2.getNumeroDePaginas})</p>`)
-    }else {
-        document.writeln(`<p>Misma cantidad de páginas</p>`)
-    }
+}
+
+const libros = [
+  new Libro("978", "Cien años de soledad", "Gabriel García Márquez", 417),
+  new Libro("979", "1984", "George Orwell", 528),
+  new Libro("980", "Don Quijote", "Miguel de Cervantes", 863),
+  new Libro("981", "El Principito", "Antoine de Saint-Exupéry", 96),
+];
+
+for (let i = 0; i < libros.length; i++) {
+  libros[i].mostrarLibro();
+}
+
+let libroConMasPaginas = libros[0];
+
+for (let i = 1; i < libros.length; i++) {
+  if (libros[i].getNumeroDePaginas > libroConMasPaginas.getNumeroDePaginas) {
+    libroConMasPaginas = libros[i];
   }
 }
 
-const libro1 = new Libro("978", "tiulo de libro 1", "Gabriel García Márquez", 417);
-const libro2 = new Libro("979", "tiulo de libro 2", "George Orwel", 528);
-libro1.mostrarLibro();
-libro2.mostrarLibro();
-
-Libro.mayorCantidadDePaginas(libro1, libro2)
+document.writeln(
+  `<p>El libro con más páginas es "${libroConMasPaginas.getTitulo}" del autor ${libroConMasPaginas.getAutor}, 
+  con ${libroConMasPaginas.getNumeroDePaginas} páginas.</p>`
+);
