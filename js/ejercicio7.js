@@ -51,6 +51,7 @@ class Agenda {
     if (this.contactos.length >= this.tamanio) {
       alert("Agenda llena");
       console.log("Agenda llena");
+      console.log("Agenda llena");
       return;
     }
 
@@ -60,17 +61,24 @@ class Agenda {
       )
     ) {
       alert("El contacto ya existe");
+      console.log("El contacto ya existe");
     } else {
       this.contactos.push(contacto);
-      alert("Contacto añadido.");
+      alert("Contacto añadido");
+      console.log("Contacto añadido");
     }
   }
 
   listarContactos() {
     if (this.contactos.length === 0) {
-      alert("La agenda está vacía.");
+      alert("La agenda está vacía");
+      console.log("La agenda está vacía");
     } else {
       this.contactos.forEach((c) => {
+        document.writeln(`<ul>
+          <li>Nombre: ${c.getNombre} </li>
+          <li>Teléfono: ${c.getTelefono}</li>
+          </ul>`);
         console.log(`Nombre: ${c.getNombre} - Teléfono: ${c.getTelefono}`);
       });
     }
@@ -80,9 +88,11 @@ class Agenda {
     const index = this.contactos.findIndex((c) => c.getNombre === nombre);
     if (index !== -1) {
       this.contactos.splice(index, 1);
-      alert("Contacto eliminado.");
+      alert("Contacto eliminado");
+      console.log("Contacto eliminado");
     } else {
-      alert("Contacto no encontrado.");
+      alert("Contacto no encontrado");
+      console.lgo("Contacto no encontrado");
     }
   }
 
@@ -90,8 +100,10 @@ class Agenda {
     const contacto = this.contactos.find((c) => c.getNombre === nombre);
     if (contacto) {
       alert(`Teléfono: ${contacto.getTelefono}`);
+      console.log(`Teléfono: ${contacto.getTelefono}`);
     } else {
-      alert("Contacto no encontrado.");
+      alert("Contacto no encontrado");
+      console.log("Contacto no encontrado");
     }
   }
 }
@@ -137,7 +149,6 @@ do {
 
     case 2:
       agenda.listarContactos();
-
       break;
 
     case 3:
@@ -157,4 +168,4 @@ do {
     default:
       document.writeln("opcion invalida");
   }
-} while (confirm("¿Ingresar otra opcion?"));
+} while (opcion !== 5);
