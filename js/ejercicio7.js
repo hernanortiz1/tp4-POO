@@ -45,8 +45,105 @@ class Contacto {
   set setTelefono(nuevoTelefono) {
     this.#telefono = nuevoTelefono;
   }
+}
 
-  aniadirContacto(Contacto){
-    
+class Agenda {
+  constructor(tamanio = 10){
+    this.tamanio = tamanio;
+    this.contactos = []
+  }
+
+  aniadirContacto(contacto){
+    if(this.contactos.length >= this.tamanio){
+      alert("Agenda llena");
+      console.log("Agenda llena");
+      return;
+    }
+    if (this.contactos.some(c => c.getNombre() === contacto.getNombre())) {
+      alert("El contacto ya existe");
+    } else {
+      this.contactos.push(contacto);
+      alert("Contacto añadido.");
+    }
+  }
+
+  listarContacto(nombre){
+    const contacto = this.contactos.find(c => c.getNombre() === nombre);
+    if (contacto) {
+      alert(`Teléfono: ${contacto.getTelefono()}`);
+    } else {
+      alert("Contacto no encontrado.");
+    }
+  }
+
+  eliminarContacto(nombre){
+    const index = this.contactos.findIndex(c => c.getNombre() === nombre);
+    if (index !== -1) {
+      this.contactos.splice(index, 1);
+      alert("Contacto eliminado.");
+    } else {
+      alert("Contacto no encontrado.");
+    }
   }
 }
+
+const tamanioAgenda = parseInt(
+  prompt(
+    `Seleccione una opción:
+    1. Crear agenda (indicar tamaño)
+    2. Crear agenda por defecto (Tamaño: 10 contactos)`
+  )
+);
+
+if(tamanioAgenda === 1){
+  const tamanio = parseInt(prompt("Ingrese tamaño de la agenda:"));
+  agenda = new Agenda(tamanio);
+} else {
+  agenda = new Agenda(); // por defecto 10 1
+}
+  
+let opcion;
+  do{
+    const opcion = parseInt(
+      prompt(
+        `Seleccione una opción:
+        1. Añadir contacto
+        2. Listar contactos
+        3. Buscar contacto
+        4. Eliminar contacto
+        5. Salir`
+      )
+    );
+    
+    switch (opcion) {
+      case 1:
+      const nombre= prompt(`Ingrese nombre: `)
+      const telefono = parseInt(prompt(`Ingrese teléfono: `))
+      const nuevo = new Contacto(nombre, telefono);
+      agenda.aniadirContacto(nuevo);
+
+      break;
+    
+      case 2:
+      
+      
+      break;
+    
+      case 3:
+       
+      break;
+    
+      case 4:
+        
+      break;
+
+      case 5:
+          document.writeln("Cerrando sistema");
+        break;
+      default:
+        document.writeln("opcion invalida");
+    }
+  
+  }while(confirm("¿Ingresar otra opcion?"))
+
+
