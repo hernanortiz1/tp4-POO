@@ -30,13 +30,16 @@ const auto = {
   },
 };
 
-while (true) {
-  const entrada = prompt("ingrese: encender o apagar");
+let entrada;
+do{
+  entrada = prompt("ingrese: encender o apagar");
 
   if (entrada === null) {
+    console.log("SALIO DE PROGRAMA")
     break;
   }
 
+  entrada = entrada.toLocaleLowerCase().trim();
   if (entrada === "encender") {
     auto.encender();
   } else if (entrada === "apagar") {
@@ -44,4 +47,4 @@ while (true) {
   } else {
     alert("ingrese un valor valido (encender o apagar)");
   }
-}
+}while(confirm("¿ingresar otro estado?"));
