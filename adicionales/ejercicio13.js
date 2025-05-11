@@ -12,6 +12,12 @@ const libro = {
   genero: "",
 };
 
+const filtroGeneroLibro = (vectorLibros, generoBuscado) => {
+  return vectorLibros.filter(
+    (libro) => libro.genero.toLowerCase() === generoBuscado.toLowerCase()
+  );
+};
+
 const libros = [];
 do {
   const titulo = prompt("Ingrese titulo");
@@ -26,4 +32,18 @@ do {
   }
 } while (confirm("¿Agregar otro libro?"));
 
-const filtroGeneroLibro = () => {};
+const generoFiltrado = prompt("Ingrese el género que desea buscar:");
+const librosFiltrados = filtroGeneroLibro(libros, generoFiltrado);
+
+if (librosFiltrados.length > 0) {
+  document.writeln(`<h3>Libros del género "${generoFiltrado}":</h3>`);
+  librosFiltrados.forEach((libro) => {
+    document.writeln(
+      `<p>Titulo: ${libro.titulo}, Autor: ${libro.autor}, Año: (${libro.anio})</p>`
+    );
+  });
+} else {
+  document.writeln(
+    `<p>No se encontraron libros del género "${generoFiltrado}".</p>`
+  );
+}
