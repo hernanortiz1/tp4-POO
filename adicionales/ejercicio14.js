@@ -17,22 +17,63 @@ const agregarNota = (alumno, nota) => {
   if (!isNaN(nota) && nota >= 0 && nota <= 10) {
     alumno.calificaciones.push(nota);
   } else {
-    alert("Nota inválida. Debe ser un número entre 0 y 10.");
+    alert("Nota inválida. Debe ser entre 0 y 10.");
   }
 };
 
-alumno.nombre = prompt("Ingrese nombre");
-alumno.curso = prompt("Ingrese curso");
+const obtenerNotaMaxima = (calificaciones) => {
+  let max = 0;
+  for (let i = 0; i < calificaciones.length; i++) {
+    if (calificaciones[i] > max) {
+      max = calificaciones[i];
+    }
+  }
+  return max;
+};
+
+const clasificarNota = (nota) => {
+  switch (true) {
+    case nota >= 9:
+      return "A";
+    case nota >= 7:
+      return "B";
+    case nota >= 5:
+      return "C";
+    case nota >= 0:
+      return "D";
+    default:
+      return "Sin clasificar";
+  }
+};
+
+const alumnos = [];
 
 do {
-  const nota = parseInt(prompt("Ingrese nota del alumno:"));
-  agregarNota(alumno, nota);
-} while (confirm("¿Ingresar otra nota al alumno?"));
+  const alumno = {
+    nombre: prompt("Ingrese el nombre del alumno:"),
+    curso: prompt("Ingrese el curso del alumno:"),
+    calificaciones: [],
+  };
 
-let notaMaxima = 0;
-for (let i = 0; i < alumno.calificaciones.length; i++) {
-  if (alumno.calificaciones[i] > notaMaxima) {
-    notaMaxima = alumno.calificaciones[i];
-  }
-}
+  do {
+    const nota = parseFloat(
+      prompt(`Ingrese una calificación para ${alumno.nombre}:`)
+    );
+    agregarNota(alumno, nota);
+  } while (confirm("¿Ingresar otra calificación para este alumno?"));
 
+  alumnos.push(alumno);
+} while (confirm("¿Ingresar otro alumno?"));
+
+alumnos.forEach((alumno) => {
+  const notaMax = obtenerNotaMaxima(alumno.calificaciones);
+  const clasificacion = clasificarNota(notaMax);
+
+  document.writeln(`<ul>
+    <li>Alumno: ${alumno.nombre}</li>
+    <li>Curso: ${alumno.curso}</li>
+    <li>Nota: ${alumno.calificaciones.join(", ")}</li>
+    <li>Nota más alta: ${notaMax}</li>
+    <li>Nota: ${clasificacion}</li>
+    </ul>`);
+});
